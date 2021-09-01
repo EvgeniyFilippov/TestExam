@@ -1,5 +1,7 @@
 package com.filipau.domain.dto.post.user
 
+import java.io.Serializable
+
 data class UserDto(
     val address: AddressDto,
     val email: String = "",
@@ -8,4 +10,4 @@ data class UserDto(
     val phone: String = "",
     val username: String = "",
     val website: String = ""
-)
+) : Serializable
