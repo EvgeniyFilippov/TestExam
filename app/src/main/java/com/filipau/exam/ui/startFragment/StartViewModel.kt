@@ -2,17 +2,44 @@ package com.filipau.exam.ui.startFragment
 
 import android.content.Context
 import androidx.lifecycle.SavedStateHandle
+import com.filipau.domain.dto.post.PostItemDto
+import com.filipau.domain.outcome.Outcome
 import com.filipau.domain.usecase.impl.GetPostsUseCase
 import com.filipau.exam.Constants
+import com.filipau.exam.Constants.ALL_POSTS_LIVE_DATA
 import com.filipau.exam.base.mvvm.BaseViewModel
+import com.filipau.exam.base.mvvm.failed
+import com.filipau.exam.base.mvvm.next
+import com.filipau.exam.base.mvvm.success
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.*
-import java.lang.StringBuilder
 
 class StartViewModel(
     savedStateHandle: SavedStateHandle,
-    private val mGetAllCountriesUseCase: GetPostsUseCase
+    private val mGetPostsUseCase: GetPostsUseCase
 
 ) : BaseViewModel(savedStateHandle)  {
+
+    val allPostsLiveData =
+        savedStateHandle.getLiveData<Outcome<MutableList<PostItemDto>>>(
+            ALL_POSTS_LIVE_DATA
+        )
+
+    fun getPostsFromApi() {
+        mGetPostsUseCase.execute()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                allPostsLiveData.next(it)
+            }, {
+                allPostsLiveData.failed(it)
+            }, {
+                if (allPostsLiveData.value is Outcome.Next) {
+                    allPostsLiveData.success((allPostsLiveData.value as Outcome.Next).data)
+                }
+            }).also { mCompositeDisposable.add(it) }
+    }
 
     fun writeLogCat(context: Context) {
         var fout: FileOutputStream? = null

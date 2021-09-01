@@ -11,7 +11,8 @@ class NetworkRepositoryImpl(private val mService: PostsAndUsersService) :
     NetworkRepository {
 
     override fun getListOfPosts(): Flowable<MutableList<PostItemDto>> =
-        mService.getListOfPosts().map { it.transformPostToDto() }
+        mService.getListOfPosts()
+            .map { it.transformPostToDto() }
 
     override fun getListOfUsers(id: String): Flowable<MutableList<UserItemDto>> {
         TODO("Not yet implemented")

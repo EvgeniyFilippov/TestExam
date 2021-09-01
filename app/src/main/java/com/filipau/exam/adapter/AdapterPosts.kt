@@ -13,13 +13,13 @@ class AdapterPosts : BaseAdapter<PostItemDto>() {
 
     class CapitalViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val tvId: AppCompatTextView = view.findViewById(R.id.idMessage)
+        val tvId: AppCompatTextView = view.findViewById(R.id.idPost)
         val tvTitle: AppCompatTextView = view.findViewById(R.id.title)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CapitalViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_message_layout, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_post_layout, parent, false)
         return CapitalViewHolder(itemView)
     }
 
