@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.filipau.data.model.MessageItem
+import com.filipau.domain.dto.post.PostItemDto
 import com.filipau.exam.R
 import com.filipau.exam.base.adapter.BaseAdapter
 
-class AdapterMessages : BaseAdapter<MessageItem>() {
+class AdapterPosts : BaseAdapter<PostItemDto>() {
 
     class CapitalViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
