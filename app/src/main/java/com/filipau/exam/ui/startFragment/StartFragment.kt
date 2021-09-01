@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.filipau.exam.R
-import com.filipau.exam.base.BaseMvvmView
+import com.filipau.exam.base.mvvm.BaseMvvmView
 import com.filipau.exam.databinding.FragmentStartBinding
 import com.filipau.exam.ext.showAlertDialog
 

@@ -1,4 +1,4 @@
-package com.filipau.exam.base
+package com.filipau.exam.base.mvvm
 
 interface BaseMvvmView {
 
