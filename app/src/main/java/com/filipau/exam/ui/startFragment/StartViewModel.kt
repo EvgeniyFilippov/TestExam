@@ -1,11 +1,18 @@
 package com.filipau.exam.ui.startFragment
 
 import android.content.Context
+import androidx.lifecycle.SavedStateHandle
+import com.filipau.domain.usecase.impl.GetPostsUseCase
 import com.filipau.exam.Constants
+import com.filipau.exam.base.mvvm.BaseViewModel
 import java.io.*
 import java.lang.StringBuilder
 
-class StartViewModel {
+class StartViewModel(
+    savedStateHandle: SavedStateHandle,
+    private val mGetAllCountriesUseCase: GetPostsUseCase
+
+) : BaseViewModel(savedStateHandle)  {
 
     fun writeLogCat(context: Context) {
         var fout: FileOutputStream? = null

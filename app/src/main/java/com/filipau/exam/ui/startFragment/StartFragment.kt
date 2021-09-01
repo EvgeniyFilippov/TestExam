@@ -5,16 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.fragment.app.Fragment
 import com.filipau.exam.R
 import com.filipau.exam.base.mvvm.BaseMvvmView
 import com.filipau.exam.databinding.FragmentStartBinding
 import com.filipau.exam.ext.showAlertDialog
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.stateViewModel
 
-open class StartFragment : Fragment(R.layout.fragment_start), BaseMvvmView {
+open class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
 
     private var binding: FragmentStartBinding? = null
-    private val viewModel: StartViewModel = StartViewModel()
+    private val viewModel: StartViewModel by stateViewModel()
     private var tractor: AppCompatImageView? = null
 
     override fun onCreateView(
