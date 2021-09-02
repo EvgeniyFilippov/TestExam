@@ -22,12 +22,7 @@ import com.filipau.exam.Constants.ID_POST_KEY
 import com.filipau.exam.R
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
-import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
-
-
-
-
-class StartFragment : ScopeFragment(com.filipau.exam.R.layout.fragment_start), BaseMvvmView {
+class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
 
     private var binding: FragmentStartBinding? = null
     private val viewModel: StartViewModel by stateViewModel()

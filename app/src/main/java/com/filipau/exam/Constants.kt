@@ -2,6 +2,7 @@ package com.filipau.exam
 
 object Constants {
 
+    //KEYS
     const val ID_POST_KEY = "ID_POST_KEY"
 
     //LOGS
@@ -14,4 +15,7 @@ object Constants {
 
     //RECYCLER
     const val COUNT_COLUMN = 3
+
+    //DEFAULT VALUES
+    const val ERROR = "ERROR"
 }
