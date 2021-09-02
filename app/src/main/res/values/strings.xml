@@ -7,4 +7,5 @@
     <string name="dialog_ok">ОК</string>
     <string name="error_default">Unknown error</string>
     <string name="contactId">contact #%1$s</string>
+    <string name="noId">contact #no Id</string>
 </resources>
