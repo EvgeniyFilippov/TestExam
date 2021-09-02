@@ -3,6 +3,7 @@ package com.filipau.exam
 import android.app.Application
 import com.filipau.exam.di.appModule
 import com.filipau.exam.di.postListModule
+import com.filipau.exam.di.userListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
@@ -19,7 +20,8 @@ class ExamApp: Application() {
             // use modules
             modules(
                 appModule,
-                postListModule
+                postListModule,
+                userListModule
             )
         }
 
