@@ -4,10 +4,24 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_message_layout"
+    app:cardBackgroundColor="@android:color/white">
 
-    app:cardBackgroundColor="@android:color/white"
+    <FrameLayout
+        android:background="@color/grey"
+        android:layout_width="@dimen/width_1dp"
+        android:layout_height="match_parent"/>
 
-   >
+    <FrameLayout
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_height="@dimen/height_1dp"/>
+
+    <FrameLayout
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_gravity="top"
+        android:layout_height="@dimen/height_1dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,21 +34,19 @@
             android:id="@+id/idPost"
             android:gravity="center_horizontal"
             android:textColor="@android:color/black"
-            android:textSize="21dp"
-            android:text="Title"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="10dp"/>
+            android:textSize="@dimen/text_size_21sp"
+            android:layout_marginLeft="@dimen/margin_10_dp"
+            android:layout_marginRight="@dimen/margin_10_dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/title"
-            android:text="Desc"
             android:maxLines="1"
-            android:textSize="12dp"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:textSize="@dimen/text_size_12sp"
+            android:layout_marginLeft="@dimen/margin_10_dp"
+            android:layout_marginRight="@dimen/margin_10_dp"
+            android:layout_marginBottom="@dimen/margin_10_dp"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

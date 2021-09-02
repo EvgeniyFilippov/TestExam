@@ -107,4 +107,6 @@ dependencies {
     implementation "io.insert-koin:koin-android-compat:$koinVersion"
     // Koin for Jetpack WorkManager
     implementation "io.insert-koin:koin-androidx-workmanager:$koinVersion"
+
+    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6"
 }

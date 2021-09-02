@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.filipau.domain.dto.post.PostItemDto
 import com.filipau.domain.outcome.Outcome
-import com.filipau.exam.R
+
 import com.filipau.exam.adapter.AdapterPosts
 import com.filipau.exam.base.mvvm.BaseMvvmView
 import com.filipau.exam.databinding.FragmentStartBinding
@@ -16,9 +15,16 @@ import com.filipau.exam.ext.showAlertDialog
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.filipau.exam.Constants.COUNT_COLUMN
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
-class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
+import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+
+
+
+
+class StartFragment : ScopeFragment(com.filipau.exam.R.layout.fragment_start), BaseMvvmView {
 
     private var binding: FragmentStartBinding? = null
     private val viewModel: StartViewModel by stateViewModel()
@@ -71,11 +77,14 @@ class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
 
         viewModel.getPostsFromApi()
         binding?.recyclerView?.setHasFixedSize(true)
-        binding?.recyclerView?.layoutManager =
-            GridLayoutManager(activity, 2, GridLayoutManager.HORIZONTAL, false)
-//        binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
         binding?.recyclerView?.adapter = adapterPosts
-        binding?.recyclerView?.adapter = adapterPosts
+        binding?.recyclerView?.layoutManager = object : GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false){
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams) : Boolean {
+                lp.width = width / COUNT_COLUMN
+                return true
+            }
+        }
+        binding?.recyclerView?.let { binding?.indicator?.attachToRecyclerView(it) }
 
     }
 

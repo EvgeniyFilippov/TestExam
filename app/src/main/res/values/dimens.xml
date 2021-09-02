@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_10_dp">10dp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="text_size_21sp">21sp</dimen>
+    <dimen name="width_1dp">1dp</dimen>
+    <dimen name="height_1dp">1dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
 </resources>
