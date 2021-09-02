@@ -20,10 +20,6 @@ class AdapterPosts : BaseAdapter<PostItemDto>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CapitalViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_post_layout, parent, false)
-//        itemView.layoutParams = RecyclerView.LayoutParams(
-//            recycleWidth / 3,
-//            ViewGroup.LayoutParams.WRAP_CONTENT
-//        )
 
         return CapitalViewHolder(itemView)
     }
@@ -33,6 +29,7 @@ class AdapterPosts : BaseAdapter<PostItemDto>() {
             val item = mDataList[position]
             holder.tvId.text = item.id.toString()
             holder.tvTitle.text = item.title
+            holder.itemView.setOnClickListener { mClickFunction?.invoke(item) }
         }
     }
 

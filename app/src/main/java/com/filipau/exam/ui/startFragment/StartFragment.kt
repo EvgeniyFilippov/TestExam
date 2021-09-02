@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.navigation.fragment.findNavController
 import com.filipau.domain.dto.post.PostItemDto
 import com.filipau.domain.outcome.Outcome
 
@@ -17,6 +18,8 @@ import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.filipau.exam.Constants.COUNT_COLUMN
+import com.filipau.exam.Constants.ID_POST_KEY
+import com.filipau.exam.R
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
@@ -92,6 +95,15 @@ class StartFragment : ScopeFragment(com.filipau.exam.R.layout.fragment_start), B
         adapterPosts.repopulate(
             listPostsFromApiDto
         )
+        adapterPosts.setItemClick { item ->
+            val bundle = Bundle()
+            bundle.putString(ID_POST_KEY, item.id.toString())
+            findNavController().navigate(
+                R.id.action_startFragment_to_userFragment,
+                bundle
+            )
+        }
+
     }
 
     override fun onDestroyView() {

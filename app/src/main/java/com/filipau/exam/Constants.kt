@@ -2,6 +2,8 @@ package com.filipau.exam
 
 object Constants {
 
+    const val ID_POST_KEY = "ID_POST_KEY"
+
     //LOGS
     const val LOGCAT_FILE = "logcat.txt"
     const val LOG_DIR = "Log_File"
