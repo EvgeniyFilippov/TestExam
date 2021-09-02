@@ -106,11 +106,11 @@ class StartFragment : ScopeFragment(com.filipau.exam.R.layout.fragment_start), B
     }
 
     override fun showProgress() {
-//        binding?.progressBar?.visibility = View.VISIBLE
+        binding?.progressBar?.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-//        binding?.progressBar?.visibility = View.GONE
+        binding?.progressBar?.visibility = View.GONE
     }
 
 }
