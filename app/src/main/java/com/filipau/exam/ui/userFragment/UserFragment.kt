@@ -19,6 +19,7 @@ import com.filipau.exam.Constants.ID_POST_KEY
 import com.filipau.exam.R
 import com.filipau.exam.base.mvvm.BaseMvvmView
 import com.filipau.exam.databinding.FragmentUserBinding
+import com.filipau.exam.ext.showAlertDialog
 import com.filipau.exam.ui.startFragment.StartViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -66,15 +67,16 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
     }
 
     override fun showError() {
-
+        hideProgress()
+        activity?.showAlertDialog()
     }
 
     override fun showProgress() {
-
+        binding?.progressBarUser?.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-
+        binding?.progressBarUser?.visibility = View.GONE
     }
 
 }
