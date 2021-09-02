@@ -4,10 +4,10 @@ import java.io.Serializable
 
 data class UserDto(
     val address: AddressDto,
-    val email: String = "",
-    val id: Int = 0,
-    val name: String = "",
-    val phone: String = "",
-    val username: String = "",
-    val website: String = ""
+    var email: String = "",
+    var id: Int = 0,
+    var name: String = "",
+    var phone: String = "",
+    var username: String = "",
+    var website: String = ""
 ) : Serializable

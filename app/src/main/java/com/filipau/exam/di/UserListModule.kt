@@ -2,6 +2,7 @@ package com.filipau.exam.di
 
 import androidx.lifecycle.SavedStateHandle
 import com.filipau.domain.usecase.impl.GetPostsUseCase
+import com.filipau.domain.usecase.impl.GetUsersUseCase
 import com.filipau.exam.ui.startFragment.StartFragment
 import com.filipau.exam.ui.startFragment.StartViewModel
 import com.filipau.exam.ui.userFragment.UserFragment
@@ -13,8 +14,8 @@ val userListModule = module {
 
   scope<UserFragment> {
 
-//      scoped { GetPostsUseCase(get()) }
+      scoped { GetUsersUseCase(get()) }
 
-      viewModel { (handle: SavedStateHandle) -> UserViewModel(handle) }
+      viewModel { (handle: SavedStateHandle) -> UserViewModel(handle, get()) }
   }
 }

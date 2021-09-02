@@ -3,7 +3,11 @@ package com.filipau.data.ext
 import com.filipau.data.NetConstants.DEFAULT_INT
 import com.filipau.data.NetConstants.DEFAULT_STRING
 import com.filipau.data.model.post.PostItem
+import com.filipau.data.model.user.User
 import com.filipau.domain.dto.post.PostItemDto
+import com.filipau.domain.dto.post.user.AddressDto
+import com.filipau.domain.dto.post.user.GeoDto
+import com.filipau.domain.dto.post.user.UserDto
 
 fun MutableList<PostItem>?.transformPostToDto(): MutableList<PostItemDto> {
 
@@ -16,4 +20,26 @@ fun MutableList<PostItem>?.transformPostToDto(): MutableList<PostItemDto> {
             listPostItemDto.add(postItemDto)
         }
         return listPostItemDto
+}
+
+fun User?.transformUserToDto(): MutableList<UserDto> {
+
+    val listUserItemDto: MutableList<UserDto> = mutableListOf()
+
+        val geoDto = GeoDto()
+        val addressDto = AddressDto("", geoDto, "", "", "")
+        val userDto = UserDto(addressDto)
+        userDto.id = this?.id ?: DEFAULT_INT
+        userDto.name = this?.name ?: DEFAULT_STRING
+        userDto.username = this?.username ?: DEFAULT_STRING
+        userDto.email = this?.email ?: DEFAULT_STRING
+        userDto.phone = this?.phone ?: DEFAULT_STRING
+        userDto.website = this?.website ?: DEFAULT_STRING
+        userDto.address.city = this?.address?.city ?: DEFAULT_STRING
+        userDto.address.geo.lat = this?.address?.geo?.lat ?: DEFAULT_STRING
+        userDto.address.geo.lng = this?.address?.geo?.lng ?: DEFAULT_STRING
+
+        listUserItemDto.add(userDto)
+
+    return listUserItemDto
 }

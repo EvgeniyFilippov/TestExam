@@ -1,7 +1,7 @@
 package com.filipau.data.api
 
 import com.filipau.data.NetConstants.BASE_URL
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.chenxyu.retrofit.adapter.FlowCallAdapterFactory
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,9 +25,19 @@ object RetrofitObj {
         .client(okHttpClient)
         .build()
 
-    val POST_SERVICE: PostsAndUsersService = retrofitBuilder.create(PostsAndUsersService::class.java)
+    private val flowRetrofitBuildr = Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(FlowCallAdapterFactory())
+        .client(okHttpClient)
+        .baseUrl(BASE_URL)
+        .build()
 
-    fun getPostApi(): PostsAndUsersService = POST_SERVICE
+    val POST_SERVICE: PostsService = retrofitBuilder.create(PostsService::class.java)
+    val FLOW_USER_SERVICE: UsersService =
+        flowRetrofitBuildr.create(UsersService::class.java)
+
+    fun getPostApi(): PostsService = POST_SERVICE
+    fun getUserApi(): UsersService = FLOW_USER_SERVICE
 
     init {
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
