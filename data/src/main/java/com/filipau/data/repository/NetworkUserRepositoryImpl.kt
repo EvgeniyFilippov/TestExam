@@ -12,6 +12,6 @@ import kotlinx.coroutines.flow.map
 class NetworkUserRepositoryImpl(private val mService: UsersService) :
     NetworkUserRepository {
 
-    override fun getListOfUsers(id: String): Flow<Outcome<MutableList<UserDto>>> =
+    override fun getListOfUsers(id: String): Flow<Outcome<UserDto>> =
         modifyFlowOutcome(mService.getListOfUsers(id).map { it.transformUserToDto() })
 }

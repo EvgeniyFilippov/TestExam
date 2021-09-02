@@ -6,9 +6,9 @@ import com.filipau.domain.repository.NetworkUserRepository
 import com.filipau.domain.usecase.UseCaseOutcomeFlow
 import kotlinx.coroutines.flow.Flow
 
-class GetUsersUseCase(private val networkUserRepository: NetworkUserRepository) : UseCaseOutcomeFlow<String, MutableList<UserDto>>() {
+class GetUsersUseCase(private val networkUserRepository: NetworkUserRepository) : UseCaseOutcomeFlow<String, UserDto>() {
 
-    override fun buildOutcomeFlow(params: String?): Flow<Outcome<MutableList<UserDto>>> =
+    override fun buildOutcomeFlow(params: String?): Flow<Outcome<UserDto>> =
         networkUserRepository.getListOfUsers(params ?: "")
 
     override val mIsParamsRequired: Boolean

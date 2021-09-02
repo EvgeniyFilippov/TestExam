@@ -13,7 +13,7 @@ class UserViewModel(
 
 ) : BaseViewModel(savedStateHandle) {
 
-    fun getNewsFlow(id: String): Flow<Outcome<MutableList<UserDto>>> =
+    fun getNewsFlow(id: String): Flow<Outcome<UserDto>> =
         mGetUsersUseCase.setParams(id).execute()
 
 }

@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface NetworkUserRepository {
 
-    fun getListOfUsers(id: String): Flow<Outcome<MutableList<UserDto>>>
+    fun getListOfUsers(id: String): Flow<Outcome<UserDto>>
 
 }

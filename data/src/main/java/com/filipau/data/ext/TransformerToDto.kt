@@ -22,9 +22,7 @@ fun MutableList<PostItem>?.transformPostToDto(): MutableList<PostItemDto> {
         return listPostItemDto
 }
 
-fun User?.transformUserToDto(): MutableList<UserDto> {
-
-    val listUserItemDto: MutableList<UserDto> = mutableListOf()
+fun User?.transformUserToDto(): UserDto {
 
         val geoDto = GeoDto()
         val addressDto = AddressDto("", geoDto, "", "", "")
@@ -39,7 +37,5 @@ fun User?.transformUserToDto(): MutableList<UserDto> {
         userDto.address.geo.lat = this?.address?.geo?.lat ?: DEFAULT_STRING
         userDto.address.geo.lng = this?.address?.geo?.lng ?: DEFAULT_STRING
 
-        listUserItemDto.add(userDto)
-
-    return listUserItemDto
+    return userDto
 }
