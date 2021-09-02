@@ -4,10 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_message_layout"
-    app:cardCornerRadius="5dp"
+
     app:cardBackgroundColor="@android:color/white"
-    android:layout_margin="10dp"
-    app:cardElevation="8dp">
+
+   >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/idPost"
+            android:gravity="center_horizontal"
             android:textColor="@android:color/black"
             android:textSize="21dp"
             android:text="Title"
@@ -30,7 +31,7 @@
             android:id="@+id/title"
             android:text="Desc"
             android:maxLines="1"
-            android:textSize="18dp"
+            android:textSize="12dp"
             android:layout_marginLeft="14dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"/>
