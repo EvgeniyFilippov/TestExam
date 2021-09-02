@@ -10,10 +10,15 @@ import com.filipau.exam.Constants.GEO_LAT_KEY
 import com.filipau.exam.Constants.GEO_LNG_KEY
 import com.filipau.exam.R
 import com.filipau.exam.databinding.FragmentMapBinding
-import com.filipau.exam.utils.initMap
-import com.google.android.libraries.maps.SupportMapFragment
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
-class MapFragment : Fragment(R.layout.fragment_map) {
+
+class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
 
     private var binding: FragmentMapBinding? = null
     private lateinit var userGeoLat: String
@@ -30,18 +35,19 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         mapFragment =
             childFragmentManager.findFragmentById(R.id.mapFragmentContainer) as? SupportMapFragment?
 
-        showMap(userGeoLat, userGeoLng)
+        mapFragment?.getMapAsync(this)
+
         return binding?.root
     }
 
-    private fun showMap(lat: String, lng: String) {
-        mapFragment?.run {
-            getMapAsync { map ->
-                activity?.let {
-                    initMap(map, lat, lng)
-                }
-            }
-        }
+    override fun onMapReady(googleMap: GoogleMap?) {
+        val sydney = LatLng(userGeoLat.toDouble(), userGeoLng.toDouble())
+        googleMap?.addMarker(
+            MarkerOptions()
+                .position(sydney)
+                .title("Marker in Sydney")
+        )
+        googleMap?.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
 }
