@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/title"
             android:text="Desc"
+            android:maxLines="1"
             android:textSize="18dp"
             android:layout_marginLeft="14dp"
             android:layout_marginRight="10dp"

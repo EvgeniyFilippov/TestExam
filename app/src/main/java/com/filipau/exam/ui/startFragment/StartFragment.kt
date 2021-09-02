@@ -18,8 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
-
-open class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
+class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
 
     private var binding: FragmentStartBinding? = null
     private val viewModel: StartViewModel by stateViewModel()
@@ -72,8 +71,10 @@ open class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView 
 
         viewModel.getPostsFromApi()
         binding?.recyclerView?.setHasFixedSize(true)
-//        binding?.recyclerView?.layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.HORIZONTAL, false)
-        binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
+        binding?.recyclerView?.layoutManager =
+            GridLayoutManager(activity, 2, GridLayoutManager.HORIZONTAL, false)
+//        binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
+        binding?.recyclerView?.adapter = adapterPosts
         binding?.recyclerView?.adapter = adapterPosts
 
     }
@@ -96,11 +97,11 @@ open class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView 
     }
 
     override fun showProgress() {
-        binding?.progressBar?.visibility = View.VISIBLE
+//        binding?.progressBar?.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        binding?.progressBar?.visibility = View.GONE
+//        binding?.progressBar?.visibility = View.GONE
     }
 
 }
