@@ -18,5 +18,14 @@
         android:id="@+id/userFragment"
         android:name="com.filipau.exam.ui.userFragment.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.filipau.exam.ui.map.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>

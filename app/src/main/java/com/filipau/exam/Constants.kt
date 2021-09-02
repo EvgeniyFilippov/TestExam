@@ -4,6 +4,8 @@ object Constants {
 
     //KEYS
     const val ID_POST_KEY = "ID_POST_KEY"
+    const val GEO_LAT_KEY = "GEO_LAT_KEY"
+    const val GEO_LNG_KEY = "GEO_LNG_KEY"
 
     //LOGS
     const val LOGCAT_FILE = "logcat.txt"

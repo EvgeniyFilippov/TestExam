@@ -19,6 +19,9 @@ import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import android.content.Intent
 import android.net.Uri
+import androidx.navigation.fragment.findNavController
+import com.filipau.exam.Constants.GEO_LAT_KEY
+import com.filipau.exam.Constants.GEO_LNG_KEY
 
 
 class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
@@ -28,6 +31,8 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
     private val viewModel: UserViewModel by stateViewModel()
     private var urlWeb = ""
     private var userPhone = ""
+    private var userGeoLat = ""
+    private var userGeoLng = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,17 +58,25 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
         binding?.userWeb?.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             if (!urlWeb.startsWith("http://") && !urlWeb.startsWith("https://")) {
-                urlWeb = "http://$urlWeb";
+                urlWeb = "http://$urlWeb"
             }
             intent.data = Uri.parse(urlWeb)
             startActivity(intent)
         }
 
         binding?.userPhone?.setOnClickListener {
-
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$userPhone"))
             startActivity(intent)
+        }
 
+        binding?.userCity?.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(GEO_LAT_KEY, userGeoLat)
+            bundle.putString(GEO_LNG_KEY, userGeoLng)
+            findNavController().navigate(
+                R.id.action_userFragment_to_mapFragment,
+                bundle
+            )
         }
 
         return binding?.root
@@ -102,6 +115,8 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
         binding?.userPhone?.text = user.phone
         userPhone = user.phone
         binding?.userCity?.text = user.address.city
+        userGeoLat = user.address.geo.lat
+        userGeoLng = user.address.geo.lng
 
     }
 
