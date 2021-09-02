@@ -8,4 +8,8 @@
     <string name="error_default">Unknown error</string>
     <string name="contactId">contact #%1$s</string>
     <string name="noId">contact #no Id</string>
+    <string name="e_mail">E-mail:</string>
+    <string name="web">Web:</string>
+    <string name="phone">Phone:</string>
+    <string name="city">City:</string>
 </resources>

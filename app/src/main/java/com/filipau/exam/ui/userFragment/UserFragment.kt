@@ -17,12 +17,17 @@ import com.filipau.exam.databinding.FragmentUserBinding
 import com.filipau.exam.ext.showAlertDialog
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import android.content.Intent
+import android.net.Uri
+
 
 class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
 
     private var binding: FragmentUserBinding? = null
     private lateinit var postId: String
     private val viewModel: UserViewModel by stateViewModel()
+    private var urlWeb = ""
+    private var userPhone = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +43,29 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
         binding = FragmentUserBinding.inflate(inflater, container, false)
         postId = arguments?.getString(ID_POST_KEY) ?: ERROR
         binding?.postId?.text = postId
+
+        binding?.userEmail?.setOnClickListener {
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_APP_EMAIL)
+            requireActivity().startActivity(intent)
+        }
+
+        binding?.userWeb?.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            if (!urlWeb.startsWith("http://") && !urlWeb.startsWith("https://")) {
+                urlWeb = "http://$urlWeb";
+            }
+            intent.data = Uri.parse(urlWeb)
+            startActivity(intent)
+        }
+
+        binding?.userPhone?.setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$userPhone"))
+            startActivity(intent)
+
+        }
+
         return binding?.root
     }
 
@@ -68,6 +96,12 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
         binding?.userId?.text = getString(R.string.contactId, user.id.toString())
         binding?.userName?.text = user.name
         binding?.nickname?.text = user.username
+        binding?.userEmail?.text = user.email
+        binding?.userWeb?.text = user.website
+        urlWeb = user.website
+        binding?.userPhone?.text = user.phone
+        userPhone = user.phone
+        binding?.userCity?.text = user.address.city
 
     }
 
