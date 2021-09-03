@@ -54,10 +54,8 @@ class StartViewModel(
                 log.append("\n")
             }
 
-            //Convert log to string
             val logString = log.toString()
 
-            //Create txt file in SD Card
             val filesDir: File? = context.filesDir
             val dir = File(filesDir?.absolutePath + File.separator + Constants.LOG_DIR)
             if (!dir.exists()) {

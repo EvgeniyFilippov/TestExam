@@ -17,7 +17,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-
 class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
 
     private var binding: FragmentMapBinding? = null

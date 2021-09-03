@@ -11,7 +11,8 @@ object NetConstants {
     //DEFAULT VALUES
     const val DEFAULT_INT = 0
     const val DEFAULT_STRING = ""
-    const val DEFAULT_DOUBLE = 0.0
-    const val DEFAULT_LATLNG_SIZE = 2
+    const val HTTP = "http://"
+    const val HTTPS = "https://"
+    const val TEL = "tel:"
 
 }

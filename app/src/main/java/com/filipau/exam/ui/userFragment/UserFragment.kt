@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.filipau.data.NetConstants.DEFAULT_STRING
+import com.filipau.data.NetConstants.HTTP
+import com.filipau.data.NetConstants.HTTPS
+import com.filipau.data.NetConstants.TEL
 import com.filipau.domain.dto.user.AddressDto
 import com.filipau.domain.dto.user.GeoDto
 import com.filipau.domain.dto.user.UserDto
@@ -30,10 +34,10 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
     private var binding: FragmentUserBinding? = null
     private lateinit var postId: String
     private val viewModel: UserViewModel by stateViewModel()
-    private var urlWeb = ""
-    private var userPhone = ""
-    private var userGeoLat = ""
-    private var userGeoLng = ""
+    private var urlWeb = DEFAULT_STRING
+    private var userPhone = DEFAULT_STRING
+    private var userGeoLat = DEFAULT_STRING
+    private var userGeoLng = DEFAULT_STRING
     private var userInfo = UserDto(AddressDto("", GeoDto("", ""), ""), "", 0, "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,15 +63,15 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
 
         binding?.userWeb?.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
-            if (!urlWeb.startsWith("http://") && !urlWeb.startsWith("https://")) {
-                urlWeb = "http://$urlWeb"
+            if (!urlWeb.startsWith(HTTP) && !urlWeb.startsWith(HTTPS)) {
+                urlWeb = HTTP + urlWeb
             }
             intent.data = Uri.parse(urlWeb)
             startActivity(intent)
         }
 
         binding?.userPhone?.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$userPhone"))
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse(TEL + userPhone))
             startActivity(intent)
         }
 
