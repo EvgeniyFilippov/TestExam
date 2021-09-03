@@ -38,8 +38,7 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
     private var userPhone = DEFAULT_STRING
     private var userGeoLat = DEFAULT_STRING
     private var userGeoLng = DEFAULT_STRING
-    private var userInfo = UserDto(AddressDto("", GeoDto("", ""), ""), "", 0, "", "", "")
-
+    private lateinit var userInfo: UserDto
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -106,6 +105,7 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
                     }
                     is Outcome.Success -> {
                         showUserInfo(it.data)
+                        saveValues(it.data)
                     }
                     else -> {
                         showError()
@@ -121,13 +121,17 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
         binding?.nickname?.text = user.username
         binding?.userEmail?.text = user.email
         binding?.userWeb?.text = user.website
-        urlWeb = user.website
         binding?.userPhone?.text = user.phone
-        userPhone = user.phone
         binding?.userCity?.text = user.address.city
+
+    }
+
+    private fun saveValues(user: UserDto) {
+
         userGeoLat = user.address.geo.lat
         userGeoLng = user.address.geo.lng
-
+        urlWeb = user.website
+        userPhone = user.phone
         userInfo = user
 
     }
