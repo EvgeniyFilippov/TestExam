@@ -17,6 +17,7 @@ import com.filipau.exam.adapter.AdapterPosts
 import com.filipau.exam.base.mvvm.BaseMvvmView
 import com.filipau.exam.databinding.FragmentStartBinding
 import com.filipau.exam.ext.showAlertDialog
+import com.filipau.exam.utils.writeLogCat
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
@@ -43,7 +44,7 @@ class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
         tractor = binding?.tractor
 
         binding?.btnSaveLogcat?.setOnClickListener {
-            context?.let { it1 -> viewModel.writeLogCat(it1) }
+            context?.let { it1 -> writeLogCat(it1) }
         }
 
         tractor = binding?.tractor

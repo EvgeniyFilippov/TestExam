@@ -20,4 +20,6 @@ object Constants {
 
     //DEFAULT VALUES
     const val ERROR = "ERROR"
+    const val DEFAULT_LAT = "0.0"
+    const val DEFAULT_LNG = "0.0"
 }

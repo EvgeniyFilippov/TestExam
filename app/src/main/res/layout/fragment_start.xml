@@ -20,8 +20,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tractor"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="@dimen/zero_dp"
         app:layout_constraintBottom_toTopOf="@id/recyclerView"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".60"

@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.filipau.exam.Constants
+import com.filipau.exam.Constants.DEFAULT_LAT
+import com.filipau.exam.Constants.DEFAULT_LNG
 import com.filipau.exam.Constants.GEO_LAT_KEY
 import com.filipau.exam.Constants.GEO_LNG_KEY
 import com.filipau.exam.R
@@ -29,8 +30,8 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMapBinding.inflate(inflater, container, false)
-        userGeoLat = arguments?.getString(GEO_LAT_KEY) ?: Constants.ERROR
-        userGeoLng = arguments?.getString(GEO_LNG_KEY) ?: Constants.ERROR
+        userGeoLat = arguments?.getString(GEO_LAT_KEY) ?: DEFAULT_LAT
+        userGeoLng = arguments?.getString(GEO_LNG_KEY) ?: DEFAULT_LNG
         mapFragment =
             childFragmentManager.findFragmentById(R.id.mapFragmentContainer) as? SupportMapFragment?
 
