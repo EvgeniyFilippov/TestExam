@@ -1,9 +1,9 @@
-package com.filipau.data.repository
+package com.filipau.data.repository.network
 
 import com.filipau.data.api.UsersService
 import com.filipau.data.ext.modifyFlowOutcome
 import com.filipau.data.ext.transformUserToDto
-import com.filipau.domain.dto.post.user.UserDto
+import com.filipau.domain.dto.user.UserDto
 import com.filipau.domain.outcome.Outcome
 import com.filipau.domain.repository.NetworkUserRepository
 import kotlinx.coroutines.flow.Flow

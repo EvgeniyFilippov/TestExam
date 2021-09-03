@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import com.filipau.domain.dto.post.user.UserDto
+import com.filipau.domain.dto.user.UserDto
 import com.filipau.domain.outcome.Outcome
 import com.filipau.exam.Constants.ERROR
 import com.filipau.exam.Constants.ID_POST_KEY
@@ -20,6 +20,8 @@ import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import android.content.Intent
 import android.net.Uri
 import androidx.navigation.fragment.findNavController
+import com.filipau.domain.dto.user.AddressDto
+import com.filipau.domain.dto.user.GeoDto
 import com.filipau.exam.Constants.GEO_LAT_KEY
 import com.filipau.exam.Constants.GEO_LNG_KEY
 
@@ -33,6 +35,7 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
     private var userPhone = ""
     private var userGeoLat = ""
     private var userGeoLng = ""
+    private var userInfo = UserDto(AddressDto("", GeoDto("", ""), ""), "", 0, "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +82,10 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
             )
         }
 
+        binding?.btnSaveDb?.setOnClickListener {
+            viewModel.saveToDBfromApi(userInfo)
+        }
+
         return binding?.root
     }
 
@@ -117,6 +124,8 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
         binding?.userCity?.text = user.address.city
         userGeoLat = user.address.geo.lat
         userGeoLng = user.address.geo.lng
+
+        userInfo = user
 
     }
 

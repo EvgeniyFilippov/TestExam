@@ -16,6 +16,6 @@ val userListModule = module {
 
       scoped { GetUsersUseCase(get()) }
 
-      viewModel { (handle: SavedStateHandle) -> UserViewModel(handle, get()) }
+      viewModel { (handle: SavedStateHandle) -> UserViewModel(handle, get(), get()) }
   }
 }

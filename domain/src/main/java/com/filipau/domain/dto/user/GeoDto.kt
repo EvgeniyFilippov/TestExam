@@ -1,4 +1,4 @@
-package com.filipau.domain.dto.post.user
+package com.filipau.domain.dto.user
 
 import java.io.Serializable
 

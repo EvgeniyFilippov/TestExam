@@ -1,6 +1,6 @@
 package com.filipau.domain.usecase.impl
 
-import com.filipau.domain.dto.post.user.UserDto
+import com.filipau.domain.dto.user.UserDto
 import com.filipau.domain.outcome.Outcome
 import com.filipau.domain.repository.NetworkUserRepository
 import com.filipau.domain.usecase.UseCaseOutcomeFlow

@@ -5,9 +5,9 @@ import com.filipau.data.NetConstants.DEFAULT_STRING
 import com.filipau.data.model.post.PostItem
 import com.filipau.data.model.user.User
 import com.filipau.domain.dto.post.PostItemDto
-import com.filipau.domain.dto.post.user.AddressDto
-import com.filipau.domain.dto.post.user.GeoDto
-import com.filipau.domain.dto.post.user.UserDto
+import com.filipau.domain.dto.user.AddressDto
+import com.filipau.domain.dto.user.GeoDto
+import com.filipau.domain.dto.user.UserDto
 
 fun MutableList<PostItem>?.transformPostToDto(): MutableList<PostItemDto> {
 
