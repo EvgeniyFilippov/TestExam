@@ -24,7 +24,10 @@ fun <T> executeJob(job: Flowable<T>, outcome: MutableLiveData<Outcome<T>>): Disp
         })
 }
 
-fun <T> executeJobOnInitialThread(job: Flowable<T>, outcome: MutableLiveData<Outcome<T>>): Disposable {
+fun <T> executeJobOnInitialThread(
+    job: Flowable<T>,
+    outcome: MutableLiveData<Outcome<T>>
+): Disposable {
     outcome.loading(true)
     return job.subscribe({
         outcome.next(it)
@@ -64,7 +67,10 @@ fun executeJob(job: Completable, outcome: MutableLiveData<Outcome<Any>>): Dispos
         })
 }
 
-fun <T> executeJobWithoutProgress(job: Flowable<T>, outcome: MutableLiveData<Outcome<T>>): Disposable {
+fun <T> executeJobWithoutProgress(
+    job: Flowable<T>,
+    outcome: MutableLiveData<Outcome<T>>
+): Disposable {
     return job.executeOnIoThread()
         .subscribe({
             outcome.next(it)

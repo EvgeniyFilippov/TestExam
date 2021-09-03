@@ -2,7 +2,6 @@ package com.filipau.data.ext
 
 import com.filipau.data.room.UserEntity
 import com.filipau.domain.dto.room.RoomUserDto
-import com.filipau.domain.dto.user.UserDto
 
 fun RoomUserDto.convertUserDtoToEntity(): UserEntity {
 

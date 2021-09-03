@@ -19,7 +19,7 @@ class StartViewModel(
     savedStateHandle: SavedStateHandle,
     private val mGetPostsUseCase: GetPostsUseCase
 
-) : BaseViewModel(savedStateHandle)  {
+) : BaseViewModel(savedStateHandle) {
 
     val allPostsLiveData =
         savedStateHandle.getLiveData<Outcome<MutableList<PostItemDto>>>(

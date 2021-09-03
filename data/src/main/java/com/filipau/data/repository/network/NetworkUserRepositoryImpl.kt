@@ -14,4 +14,5 @@ class NetworkUserRepositoryImpl(private val mService: UsersService) :
 
     override fun getListOfUsers(id: String): Flow<Outcome<UserDto>> =
         modifyFlowOutcome(mService.getListOfUsers(id).map { it.transformUserToDto() })
+
 }

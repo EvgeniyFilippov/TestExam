@@ -1,7 +1,7 @@
 package com.filipau.exam
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.filipau.exam.databinding.ActivityMainBinding
@@ -9,7 +9,7 @@ import com.filipau.exam.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
-    private  var binding: ActivityMainBinding? = null
+    private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

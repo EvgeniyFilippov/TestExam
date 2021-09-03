@@ -2,7 +2,6 @@ package com.filipau.exam.ui.userFragment
 
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
-import com.filipau.data.room.UserEntity
 import com.filipau.domain.dto.room.RoomUserDto
 import com.filipau.domain.dto.user.UserDto
 import com.filipau.domain.outcome.Outcome
@@ -22,27 +21,27 @@ class UserViewModel(
 
     ) : BaseViewModel(savedStateHandle) {
 
-    fun getNewsFlow(id: String): Flow<Outcome<UserDto>> =
+    fun getUserFlow(id: String): Flow<Outcome<UserDto>> =
         mGetUsersUseCase.setParams(id).execute()
 
     fun saveToDBfromApi(listUserDtoFromApi: UserDto) {
         Flowable.just(listUserDtoFromApi)
             .map { item ->
-                mDatabaseUserRepository.add( RoomUserDto(
-                            item.id,
-                            item.name,
-                            item.username,
-                            item.email,
-                            item.website,
-                            item.phone,
-                            item.address.city
-                        )
+                mDatabaseUserRepository.add(
+                    RoomUserDto(
+                        item.id,
+                        item.name,
+                        item.username,
+                        item.email,
+                        item.website,
+                        item.phone,
+                        item.address.city
+                    )
                 )
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-
                 Log.d(KOIN_TAG, "Saved to DB")
             }, {
                 Log.d(KOIN_TAG, it.message.toString())

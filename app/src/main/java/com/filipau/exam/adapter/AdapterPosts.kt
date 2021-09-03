@@ -11,21 +11,21 @@ import com.filipau.exam.base.adapter.BaseAdapter
 
 class AdapterPosts : BaseAdapter<PostItemDto>() {
 
-    class CapitalViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class PostViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val tvId: AppCompatTextView = view.findViewById(R.id.idPost)
         val tvTitle: AppCompatTextView = view.findViewById(R.id.title)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CapitalViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_post_layout, parent, false)
 
-        return CapitalViewHolder(itemView)
+        return PostViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is CapitalViewHolder) {
+        if (holder is PostViewHolder) {
             val item = mDataList[position]
             holder.tvId.text = item.id.toString()
             holder.tvTitle.text = item.title

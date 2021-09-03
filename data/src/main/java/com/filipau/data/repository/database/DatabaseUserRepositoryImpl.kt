@@ -7,7 +7,7 @@ import com.filipau.domain.repository.DatabaseUserRepository
 
 class DatabaseUserRepositoryImpl(private val db: DatabaseInfo) : DatabaseUserRepository {
 
-    override fun add(user: RoomUserDto)  =
+    override fun add(user: RoomUserDto) =
         db.getUserDAO().add(user.convertUserDtoToEntity())
 
 }

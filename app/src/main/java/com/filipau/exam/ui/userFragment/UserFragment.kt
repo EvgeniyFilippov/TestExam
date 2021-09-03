@@ -1,14 +1,21 @@
 package com.filipau.exam.ui.userFragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.filipau.domain.dto.user.AddressDto
+import com.filipau.domain.dto.user.GeoDto
 import com.filipau.domain.dto.user.UserDto
 import com.filipau.domain.outcome.Outcome
 import com.filipau.exam.Constants.ERROR
+import com.filipau.exam.Constants.GEO_LAT_KEY
+import com.filipau.exam.Constants.GEO_LNG_KEY
 import com.filipau.exam.Constants.ID_POST_KEY
 import com.filipau.exam.MainActivity
 import com.filipau.exam.R
@@ -17,14 +24,6 @@ import com.filipau.exam.databinding.FragmentUserBinding
 import com.filipau.exam.ext.showAlertDialog
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
-import android.content.Intent
-import android.net.Uri
-import androidx.navigation.fragment.findNavController
-import com.filipau.domain.dto.user.AddressDto
-import com.filipau.domain.dto.user.GeoDto
-import com.filipau.exam.Constants.GEO_LAT_KEY
-import com.filipau.exam.Constants.GEO_LNG_KEY
-
 
 class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
 
@@ -91,7 +90,7 @@ class UserFragment : ScopeFragment(R.layout.fragment_user), BaseMvvmView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getNewsFlow(postId).asLiveData(lifecycleScope.coroutineContext)
+        viewModel.getUserFlow(postId).asLiveData(lifecycleScope.coroutineContext)
             .observe(viewLifecycleOwner, {
                 when (it) {
                     is Outcome.Failure -> {

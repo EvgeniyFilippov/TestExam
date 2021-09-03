@@ -8,7 +8,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
 
-class ExamApp: Application() {
+class ExamApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

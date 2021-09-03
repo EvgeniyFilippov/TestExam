@@ -9,10 +9,11 @@ import org.koin.dsl.module
 
 val postListModule = module {
 
-  scope<StartFragment> {
+    scope<StartFragment> {
 
-      scoped { GetPostsUseCase(get()) }
+        scoped { GetPostsUseCase(get()) }
 
-      viewModel { (handle: SavedStateHandle) -> StartViewModel(handle, get()) }
-  }
+        viewModel { (handle: SavedStateHandle) -> StartViewModel(handle, get()) }
+    }
+
 }

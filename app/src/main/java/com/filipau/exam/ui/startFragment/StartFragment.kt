@@ -6,21 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.filipau.domain.dto.post.PostItemDto
 import com.filipau.domain.outcome.Outcome
-
+import com.filipau.exam.Constants.COUNT_COLUMN
+import com.filipau.exam.Constants.ID_POST_KEY
+import com.filipau.exam.R
 import com.filipau.exam.adapter.AdapterPosts
 import com.filipau.exam.base.mvvm.BaseMvvmView
 import com.filipau.exam.databinding.FragmentStartBinding
 import com.filipau.exam.ext.showAlertDialog
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.filipau.exam.Constants.COUNT_COLUMN
-import com.filipau.exam.Constants.ID_POST_KEY
-import com.filipau.exam.R
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
 
@@ -64,7 +63,7 @@ class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
                     showError()
                 }
                 is Outcome.Success -> {
-                    showCountries(it.data)
+                    showPosts(it.data)
                 }
 
                 else -> {
@@ -76,17 +75,18 @@ class StartFragment : ScopeFragment(R.layout.fragment_start), BaseMvvmView {
         viewModel.getPostsFromApi()
         binding?.recyclerView?.setHasFixedSize(true)
         binding?.recyclerView?.adapter = adapterPosts
-        binding?.recyclerView?.layoutManager = object : GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false){
-            override fun checkLayoutParams(lp: RecyclerView.LayoutParams) : Boolean {
-                lp.width = width / COUNT_COLUMN
-                return true
+        binding?.recyclerView?.layoutManager =
+            object : GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false) {
+                override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                    lp.width = width / COUNT_COLUMN
+                    return true
+                }
             }
-        }
         binding?.recyclerView?.let { binding?.indicator?.attachToRecyclerView(it) }
 
     }
 
-    private fun showCountries(listPostsFromApiDto: MutableList<PostItemDto>) {
+    private fun showPosts(listPostsFromApiDto: MutableList<PostItemDto>) {
         adapterPosts.repopulate(
             listPostsFromApiDto
         )

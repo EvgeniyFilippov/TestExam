@@ -1,7 +1,7 @@
 package com.filipau.data.api
 
-import com.filipau.data.NetConstants.BASE_URL
 import com.chenxyu.retrofit.adapter.FlowCallAdapterFactory
+import com.filipau.data.NetConstants.BASE_URL
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
